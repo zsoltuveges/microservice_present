@@ -14,6 +14,7 @@ public interface PresentRepository extends JpaRepository<Present, Integer>{
     public List<Present> findAllByOrderByCreationAsc();
     public List<Present> findAllByOrderByCreationDesc();
 
+    public List<Present> findAllByCategory(String category);
     public List<Present> findAllByCategoryOrderByNameAsc(String category);
     public List<Present> findAllByCategoryOrderByNameDesc(String category);
     public List<Present> findAllByCategoryOrderByPriceAsc(String category);
@@ -21,6 +22,7 @@ public interface PresentRepository extends JpaRepository<Present, Integer>{
     public List<Present> findAllByCategoryOrderByCreationAsc(String category);
     public List<Present> findAllByCategoryOrderByCreationDesc(String category);
 
+    public List<Present> findAllByUserId(long id);
     public List<Present> findAllByUserIdOrderByNameAsc(long id);
     public List<Present> findAllByUserIdOrderByNameDesc(long id);
     public List<Present> findAllByUserIdOrderByPriceAsc(long id);
