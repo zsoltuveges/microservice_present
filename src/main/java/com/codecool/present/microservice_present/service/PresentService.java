@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PresentService {
@@ -19,7 +20,6 @@ public class PresentService {
     }
 
     /**
-     *
      * @return All of the presents
      */
     public List<Present> getAllPresents() {
@@ -27,7 +27,6 @@ public class PresentService {
     }
 
     /**
-     *
      * @param orderBy an OrderBy Enum, represents table columns to sort by and how to sort it
      * @return All presents in the requested order
      */
@@ -50,7 +49,6 @@ public class PresentService {
     }
 
     /**
-     *
      * @param category a category (String)
      * @return a list of presents by category without sorting
      */
@@ -59,7 +57,6 @@ public class PresentService {
     }
 
     /**
-     *
      * @param userId a userId
      * @return a list of presents by userId without sorting
      */
@@ -67,12 +64,11 @@ public class PresentService {
         return presentRepository.findAllByUserId(userId);
     }
 
-        /**
-         *
-         * @param orderBy an OrderBy Enum, represents table columns to sort by and how to sort it
-         * @param category a category
-         * @return a list of present objects
-         */
+    /**
+     * @param orderBy  an OrderBy Enum, represents table columns to sort by and how to sort it
+     * @param category a category
+     * @return a list of present objects
+     */
     public List<Present> getPresentsBy(OrderBy orderBy, String category) {
         if (orderBy == OrderBy.NAME_ASC) {
             return presentRepository.findAllByCategoryOrderByNameAsc(category);
@@ -92,9 +88,8 @@ public class PresentService {
     }
 
     /**
-     *
      * @param orderBy an OrderBy Enum, represents table columns to sort by and how to sort it
-     * @param userId a userID
+     * @param userId  a userID
      * @return a list of present objects so
      */
     public List<Present> getPresentsBy(OrderBy orderBy, Long userId) {
@@ -115,4 +110,12 @@ public class PresentService {
         }
     }
 
+    public Optional<Present> addPresent(Present present) {
+        presentRepository.save(present);
+        return presentRepository.findById(present.getId());
+    }
+
+    public void removePresentById(long id) {
+        presentRepository.deleteById(id);
+    }
 }

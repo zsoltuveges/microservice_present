@@ -2,22 +2,14 @@ package com.codecool.present.microservice_present.controller;
 
 import com.codecool.present.microservice_present.model.Present;
 import com.codecool.present.microservice_present.service.PresentService;
-import org.springframework.http.HttpEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-//Present	Add	/present	POST	Present	Present
-//Present	Remove	/present/{id}	DELETE	ID	HTTP OK
 //Present	Modify	/present/{id}	PUT	ID, Present	Present
 
-//Present	Get present by ID	/present/{id}	GET	ID	Present
-
-@Controller
+@RestController
 public class PresentController {
 
     PresentService presentService;
@@ -31,12 +23,25 @@ public class PresentController {
         return presentService.getAllPresents();
     }
 
-    @PostMapping("/present")
-    public Present addPresent(@RequestBody Present present) {
-        presentService.addPresent(present);
-        return present;
+    @GetMapping("/present/{id}")
+    public List<Present> getPresentById(@PathVariable("id") long id) {
+        return presentService.getPresentsBy(id);
     }
 
+    @PostMapping("/present")
+    public Present addPresent(@RequestBody Present present) {
+        return presentService.addPresent(present).get();
+    }
 
+    @DeleteMapping("/present/{id}")
+    public HttpStatus removePresentById(@PathVariable("id") long id) {
+        presentService.removePresentById(id);
+        return HttpStatus.OK;
+    }
+
+    @PutMapping("/present")
+    public Present modifyPresent(@RequestBody Present present) {
+        return presentService.addPresent(present).get();
+    }
 
 }
