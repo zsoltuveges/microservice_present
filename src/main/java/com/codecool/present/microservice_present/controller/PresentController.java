@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 //Present	Modify	/present/{id}	PUT	ID, Present	Present
 
@@ -24,8 +25,13 @@ public class PresentController {
     }
 
     @GetMapping("/present/{id}")
-    public List<Present> getPresentById(@PathVariable("id") long id) {
-        return presentService.getPresentsBy(id);
+    public Optional<Present> getPresentById(@PathVariable("id") long id) {
+        return presentService.getPresentBy(id);
+    }
+
+    @GetMapping("/present/user/{id}")
+    public List<Present> getPresentByUserId(@PathVariable("id") long id) {
+        return presentService.getAllPresentsByUserId(id);
     }
 
     @PostMapping("/present")
