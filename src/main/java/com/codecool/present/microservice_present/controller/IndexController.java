@@ -10,9 +10,4 @@ public class IndexController {
     public String index() {
         return "homepage";
     }
-
-    @GetMapping(value = "/documentation")
-    public String documentation(){
-        return "documentation/index.html";
-    }
 }
