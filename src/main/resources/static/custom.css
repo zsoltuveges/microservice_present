@@ -1,0 +1,57 @@
+.container {
+    text-align: center !important;
+}
+
+body {
+    background-color: #e8e8e8;
+}
+
+.post {
+    color: orange;
+}
+
+.put {
+    color: blue;
+}
+
+.delete {
+    color: red;
+}
+
+.get {
+    color: green;
+}
+
+.body-content {
+    font-size: 11pt;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.method {
+    border-right: 1px solid gray;
+}
+
+.column-title {
+    width: 100%;
+}
+table {
+    white-space: nowrap;
+}
+
+td:last-child {
+    width: 100%;
+}
+
+.column-method {
+    text-align: right;
+    width: 25%;
+}
+
+.row {
+    flex-wrap: inherit !important;
+}
+
+.column {
+    text-align: left;
+}
