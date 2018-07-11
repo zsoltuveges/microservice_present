@@ -3,26 +3,20 @@ package com.codecool.present.microservice_present.controller;
 import com.codecool.present.microservice_present.model.Present;
 import com.codecool.present.microservice_present.service.PresentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -56,14 +50,16 @@ public class PresentControllerTest {
                 .andExpect(jsonPath("$[0].name", is(present1.getName())));
     }
 
+
+    //TODO posting not working properly
     @Test
     public void Should_ReturnPresentObject_When_PresentObjectCalledAdd() throws Exception{
         Present present = new Present("kuta", "cica", 10, "web", "animal", 312312);
 
         System.out.println(asJsonString(present));
         mvc.perform(post("/present").characterEncoding("utf-8")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(asJsonString(present)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(present)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name", is(present.getName())));
     }
