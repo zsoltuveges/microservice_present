@@ -27,6 +27,8 @@ public class Present {
 
 
     public Present() {
+        available = true;
+        creation = LocalDateTime.now();
     }
 
     public Present(String name, String description, int price, String imageUrl, String category, long userId) {
