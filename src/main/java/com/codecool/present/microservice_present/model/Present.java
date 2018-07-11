@@ -1,10 +1,15 @@
 package com.codecool.present.microservice_present.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Present {
 
     @Id
@@ -22,6 +27,8 @@ public class Present {
 
 
     public Present() {
+        available = true;
+        creation = LocalDateTime.now();
     }
 
     public Present(String name, String description, int price, String imageUrl, String category, long userId) {
