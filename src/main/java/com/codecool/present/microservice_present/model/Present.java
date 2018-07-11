@@ -18,7 +18,7 @@ public class Present {
 
     String name;
     String description;
-    int price;
+    double price;
     String imageUrl;
     String category;
     boolean available;
@@ -66,11 +66,11 @@ public class Present {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

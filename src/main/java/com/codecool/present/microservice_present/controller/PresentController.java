@@ -2,15 +2,11 @@ package com.codecool.present.microservice_present.controller;
 
 import com.codecool.present.microservice_present.model.Present;
 import com.codecool.present.microservice_present.service.PresentService;
-import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
-
-//Present	Modify	/present/{id}	PUT	ID, Present	Present
 
 @RestController
 public class PresentController {
@@ -41,13 +37,7 @@ public class PresentController {
     }
 
     @PostMapping("/present")
-    public Present addPresent(@RequestBody Present present) {
-        return presentService.addPresent(present).get();
-    }
-
-    @PostMapping("/present/gson")
-    public Present addPresentFromGSON(@RequestBody String s){
-        Present present = new Gson().fromJson(s.toString(), Present.class);
+    public Present addPresent(@RequestParam Present present) {
         return presentService.addPresent(present).get();
     }
 
