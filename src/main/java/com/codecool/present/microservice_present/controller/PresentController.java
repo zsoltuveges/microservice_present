@@ -2,6 +2,7 @@ package com.codecool.present.microservice_present.controller;
 
 import com.codecool.present.microservice_present.model.Present;
 import com.codecool.present.microservice_present.service.PresentService;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,10 @@ public class PresentController {
     }
 
     @GetMapping("/present")
-    public List<Present> getAllPresents(){
-        return presentService.getAllPresents();
+    public String getAllPresents(){
+        JSONObject resultJSON = new JSONObject();
+        resultJSON.put("presents", presentService.getAllPresents());
+        return resultJSON.toString();
     }
 
     @GetMapping("/present/{id}")
@@ -30,8 +33,10 @@ public class PresentController {
     }
 
     @GetMapping("/present/user/{id}")
-    public List<Present> getPresentByUserId(@PathVariable("id") long id) {
-        return presentService.getAllPresentsByUserId(id);
+    public String getPresentByUserId(@PathVariable("id") long id) {
+        JSONObject resultJSON = new JSONObject();
+        resultJSON.put("presents", presentService.getAllPresentsByUserId(id));
+        return resultJSON.toString();
     }
 
     @PostMapping("/present")
