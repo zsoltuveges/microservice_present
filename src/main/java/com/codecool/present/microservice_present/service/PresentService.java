@@ -57,11 +57,20 @@ public class PresentService {
     }
 
     /**
-     * @param presentId a userId
+     * @param presentId
+     * @return a present by id
+     */
+    public Optional<Present> getPresentBy(Long presentId) {
+        return presentRepository.findById(presentId);
+    }
+
+    /**
+     *
+     * @param userId
      * @return a list of presents by userId without sorting
      */
-    public Present getPresentsBy(Long presentId) {
-        return presentRepository.findById(presentId).get();
+    public List<Present> getAllPresentsByUserId(long userId) {
+        return presentRepository.findAllByUserId(userId);
     }
 
     /**
