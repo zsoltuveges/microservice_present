@@ -31,20 +31,21 @@ public class PresentService {
      * @return All presents in the requested order
      */
     public List<Present> getAllPresents(OrderBy orderBy) {
-        if (orderBy == OrderBy.NAME_ASC) {
-            return presentRepository.findAllByOrderByNameAsc();
-        } else if (orderBy == OrderBy.NAME_DESC) {
-            return presentRepository.findAllByOrderByNameDesc();
-        } else if (orderBy == OrderBy.PRICE_ASC) {
-            return presentRepository.findAllByOrderByPriceAsc();
-        } else if (orderBy == OrderBy.PRICE_DESC) {
-            return presentRepository.findAllByOrderByPriceDesc();
-        } else if (orderBy == OrderBy.CREATION_ASC) {
-            return presentRepository.findAllByOrderByCreationAsc();
-        } else if (orderBy == OrderBy.CREATION_DESC) {
-            return presentRepository.findAllByOrderByCreationDesc();
-        } else {
-            throw new IllegalArgumentException("Illegal argument!!4!");
+        switch (orderBy) {
+            case NAME_ASC:
+                return presentRepository.findAllByOrderByNameAsc();
+            case NAME_DESC:
+                return presentRepository.findAllByOrderByNameDesc();
+            case PRICE_ASC:
+                return presentRepository.findAllByOrderByPriceAsc();
+            case PRICE_DESC:
+                return presentRepository.findAllByOrderByPriceDesc();
+            case CREATION_ASC:
+                return presentRepository.findAllByOrderByCreationAsc();
+            case CREATION_DESC:
+                return presentRepository.findAllByOrderByCreationDesc();
+            default:
+                throw new IllegalArgumentException("Illegal argument!!4!");
         }
     }
 
@@ -79,20 +80,21 @@ public class PresentService {
      * @return a list of present objects
      */
     public List<Present> getPresentsBy(OrderBy orderBy, String category) {
-        if (orderBy == OrderBy.NAME_ASC) {
-            return presentRepository.findAllByCategoryOrderByNameAsc(category);
-        } else if (orderBy == OrderBy.NAME_DESC) {
-            return presentRepository.findAllByCategoryOrderByNameDesc(category);
-        } else if (orderBy == OrderBy.PRICE_ASC) {
-            return presentRepository.findAllByCategoryOrderByPriceAsc(category);
-        } else if (orderBy == OrderBy.PRICE_DESC) {
-            return presentRepository.findAllByCategoryOrderByPriceDesc(category);
-        } else if (orderBy == OrderBy.CREATION_ASC) {
-            return presentRepository.findAllByCategoryOrderByCreationAsc(category);
-        } else if (orderBy == OrderBy.CREATION_DESC) {
-            return presentRepository.findAllByCategoryOrderByCreationDesc(category);
-        } else {
-            throw new IllegalArgumentException("Illegal argument!!4!");
+        switch (orderBy) {
+            case NAME_ASC:
+                return presentRepository.findAllByCategoryOrderByNameAsc(category);
+            case NAME_DESC:
+                return presentRepository.findAllByCategoryOrderByNameDesc(category);
+            case PRICE_ASC:
+                return presentRepository.findAllByCategoryOrderByPriceAsc(category);
+            case PRICE_DESC:
+                return presentRepository.findAllByCategoryOrderByPriceDesc(category);
+            case CREATION_ASC:
+                return presentRepository.findAllByCategoryOrderByCreationAsc(category);
+            case CREATION_DESC:
+                return presentRepository.findAllByCategoryOrderByCreationDesc(category);
+            default:
+                throw new IllegalArgumentException("Illegal argument!!4!");
         }
     }
 
@@ -102,20 +104,21 @@ public class PresentService {
      * @return a list of present objects so
      */
     public List<Present> getPresentsBy(OrderBy orderBy, Long userId) {
-        if (orderBy == OrderBy.NAME_ASC) {
-            return presentRepository.findAllByUserIdOrderByNameAsc(userId);
-        } else if (orderBy == OrderBy.NAME_DESC) {
-            return presentRepository.findAllByUserIdOrderByNameDesc(userId);
-        } else if (orderBy == OrderBy.PRICE_ASC) {
-            return presentRepository.findAllByUserIdOrderByPriceAsc(userId);
-        } else if (orderBy == OrderBy.PRICE_DESC) {
-            return presentRepository.findAllByUserIdOrderByPriceDesc(userId);
-        } else if (orderBy == OrderBy.CREATION_ASC) {
-            return presentRepository.findAllByUserIdOrderByCreationAsc(userId);
-        } else if (orderBy == OrderBy.CREATION_DESC) {
-            return presentRepository.findAllByUserIdOrderByCreationDesc(userId);
-        } else {
-            throw new IllegalArgumentException("You gave illegal argument!!!");
+        switch (orderBy) {
+            case NAME_ASC:
+                return presentRepository.findAllByUserIdOrderByNameAsc(userId);
+            case NAME_DESC:
+                return presentRepository.findAllByUserIdOrderByNameDesc(userId);
+            case PRICE_ASC:
+                return presentRepository.findAllByUserIdOrderByPriceAsc(userId);
+            case PRICE_DESC:
+                return presentRepository.findAllByUserIdOrderByPriceDesc(userId);
+            case CREATION_ASC:
+                return presentRepository.findAllByUserIdOrderByCreationAsc(userId);
+            case CREATION_DESC:
+                return presentRepository.findAllByUserIdOrderByCreationDesc(userId);
+            default:
+                throw new IllegalArgumentException("You gave illegal argument!!!");
         }
     }
 
