@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface PresentRepository extends JpaRepository<Present, Long> {
 
+    public List<Present> findAllByAvailable(boolean available);
+
     public List<Present> findAllByOrderByNameAsc();
 
     public List<Present> findAllByOrderByNameDesc();

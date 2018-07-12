@@ -30,7 +30,7 @@ public class PresentController {
     }
 
     @GetMapping("/present/{id}")
-    public Optional<Present> getPresentById(@PathVariable("id") long id) {
+    public Present getPresentById(@PathVariable("id") long id) {
         return presentService.getPresentBy(id);
     }
 
