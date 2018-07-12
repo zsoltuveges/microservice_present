@@ -18,7 +18,7 @@ public class PresentController {
     }
 
     @GetMapping("/present")
-    public String getAllPresents(){
+    public String getAllPresents() {
         JSONObject resultJSON = new JSONObject();
         resultJSON.put("presents", presentService.getAllPresents());
         return resultJSON.toString();
@@ -47,8 +47,9 @@ public class PresentController {
         return HttpStatus.OK;
     }
 
-    @PutMapping("/present")
-    public Present modifyPresent(@RequestBody Present present) {
+    @PutMapping("/present/{id}")
+    public Present modifyPresent(@PathVariable("id") long id,
+                                 @RequestBody Present present) {
         return presentService.addPresent(present).get();
     }
 
