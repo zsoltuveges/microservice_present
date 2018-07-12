@@ -23,7 +23,7 @@ public class PresentService {
      * @return All of the presents
      */
     public List<Present> getAllPresents() {
-        return presentRepository.findAll();
+        return presentRepository.findAllByAvailable(true);
     }
 
     /**
