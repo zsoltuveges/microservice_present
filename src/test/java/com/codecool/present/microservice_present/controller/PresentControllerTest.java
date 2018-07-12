@@ -85,6 +85,7 @@ public class PresentControllerTest {
     @Test
     public void Should_ReturnPresentObject_When_AddPresent() throws Exception {
         Present present = new Present("kuta", "cica", 10, "web", "animal", 312312);
+        present.setCreation(null);
 
         when(service.addPresent(any(Present.class))).thenReturn(Optional.of(present));
 
@@ -99,6 +100,7 @@ public class PresentControllerTest {
     @Test
     public void Should_ReturnPresentObject_When_ModifyPresent() throws Exception {
         Present present = new Present("kuta", "cica", 10, "web", "animal", 312312);
+        present.setCreation(null);
 
         when(service.addPresent(any(Present.class))).thenReturn(Optional.of(present));
 
