@@ -2,7 +2,10 @@ package com.codecool.present.microservice_present.controller;
 
 import com.codecool.present.microservice_present.model.Present;
 import com.codecool.present.microservice_present.service.PresentService;
-import org.json.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +21,12 @@ public class PresentController {
     }
 
     @GetMapping("/present")
-    public String getAllPresents(){
-        JSONObject resultJSON = new JSONObject();
-        resultJSON.put("presents", presentService.getAllPresents());
-        return resultJSON.toString();
+    public String getAllPresents() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        ArrayNode arrayNode = objectMapper.valueToTree(presentService.getAllPresents());
+        objectNode.putArray("presents").addAll(arrayNode);
+        return objectNode.toString();
     }
 
     @GetMapping("/present/{id}")
@@ -31,9 +36,11 @@ public class PresentController {
 
     @GetMapping("/present/user/{id}")
     public String getPresentByUserId(@PathVariable("id") long id) {
-        JSONObject resultJSON = new JSONObject();
-        resultJSON.put("presents", presentService.getAllPresentsByUserId(id));
-        return resultJSON.toString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode objectNode = objectMapper.createObjectNode();
+        ArrayNode arrayNode = objectMapper.valueToTree(presentService.getAllPresentsByUserId(id));
+        objectNode.putArray("presents").addAll(arrayNode);
+        return objectNode.toString();
     }
 
     @PostMapping("/present")
