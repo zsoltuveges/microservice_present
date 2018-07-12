@@ -1,5 +1,6 @@
 package com.codecool.present.microservice_present.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
@@ -110,6 +111,7 @@ public class Present {
         return creation;
     }
 
+    @JsonIgnore
     public void setCreation(LocalDateTime creation) {
         this.creation = creation;
     }

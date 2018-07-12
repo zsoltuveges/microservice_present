@@ -5,6 +5,7 @@ import com.codecool.present.microservice_present.service.PresentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,11 +15,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,18 +53,19 @@ public class PresentControllerTest {
     }
 
 
-    //TODO posting not working properly
-//    @Test
-//    public void Should_ReturnPresentObject_When_PresentObjectCalledAdd() throws Exception{
-//        Present present = new Present("kuta", "cica", 10, "web", "animal", 312312);
-//
-//        System.out.println(asJsonString(present));
-//        mvc.perform(post("/present").characterEncoding("utf-8")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(asJsonString(present)))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$[0].name", is(present.getName())));
-//    }
+    @Test
+    public void Should_ReturnPresentObject_When_PresentObjectCalledAdd() throws Exception {
+        Present present = new Present("kuta", "cica", 10, "web", "animal", 312312);
+
+        when(service.addPresent(ArgumentMatchers.any(Present.class))).thenReturn(Optional.of(present));
+
+        System.out.println(asJsonString(present));
+        mvc.perform(post("/present").characterEncoding("utf-8")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(present)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(present.getName())));
+    }
 
     private static String asJsonString(final Object obj) {
         try {
