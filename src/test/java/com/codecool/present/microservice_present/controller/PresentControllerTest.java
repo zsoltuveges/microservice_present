@@ -55,7 +55,7 @@ public class PresentControllerTest {
     public void Should_ReturnPresent_When_GetPresentsByID() throws Exception {
         Present present = new Present("cica", "kuta", 15, "web", "animal", 312312);
 
-        when(service.getPresentBy(any())).thenReturn(Optional.of(present));
+        when(service.getPresentBy(any())).thenReturn(present);
 
         mvc.perform(get("/present/{id}", present.getId())
                 .accept(MediaType.APPLICATION_JSON))
