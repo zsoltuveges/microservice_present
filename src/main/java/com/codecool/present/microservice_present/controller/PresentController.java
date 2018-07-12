@@ -37,7 +37,7 @@ public class PresentController {
     }
 
     @PostMapping("/present")
-    public Present addPresent(@RequestParam Present present) {
+    public Present addPresent(@RequestBody Present present) {
         return presentService.addPresent(present).get();
     }
 
