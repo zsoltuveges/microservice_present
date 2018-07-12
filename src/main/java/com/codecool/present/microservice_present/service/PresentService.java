@@ -61,8 +61,10 @@ public class PresentService {
      * @param presentId
      * @return a present by id
      */
-    public Optional<Present> getPresentBy(Long presentId) {
-        return presentRepository.findById(presentId);
+    public Present getPresentBy(Long presentId) {
+        Present emptyPresent = new Present("", "", 0, "", "", -1);
+        emptyPresent.setId(-1);
+        return presentRepository.findById(presentId).orElse(emptyPresent);
     }
 
     /**
